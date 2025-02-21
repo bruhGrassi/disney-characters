@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import '../App.css';
 
@@ -36,12 +36,25 @@ const Pagination = () => {
         }
     }
 
-    const prevPage = () => {setCurrentPage((prev) => prev - 1)};
-    const nextPage = () => {setCurrentPage((prev) => prev + 1)};
+    const prevPage = () => {
+        setCurrentPage((prev) => prev - 1);
+        fetchCharacters();
+   
+    };
+    const nextPage = () => {
+        setCurrentPage((prev) => prev + 1);
+        fetchCharacters();
+     
+    };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        fetchCharacters();
+    }
 
     useEffect(() => {
         fetchCharacters()
-    },[currentPage])
+    },[])
 
     return (
         <>
@@ -54,16 +67,20 @@ const Pagination = () => {
             )))}
 
             {!loading && totalPages > 0 && (
-            <div className="pagination">
+            <form className="pagination" onSubmit={handleSubmit}>
                 <button type="button" disabled={currentPage === 1} onClick={prevPage}>
                     ⬅️ Anterior
                 </button>
-                <span>de {currentPage}</span>
+                <input
+                    type="number"
+                    value={currentPage}
+                    onChange={(event) => setCurrentPage(Number(event.target.value))}
+                />
                 <span>de {totalPages}</span>
                 <button type="button" disabled={currentPage === totalPages} onClick={nextPage}>
                     Próxima ➡️
                 </button>
-            </div>
+            </form>
             )}
 
            
