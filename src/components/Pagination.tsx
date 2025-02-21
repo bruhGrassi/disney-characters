@@ -62,10 +62,13 @@ const Pagination = () => {
 
             {!loading && error && <p className="error">{error}</p>}
 
-            {!loading && (characters.map((char) => (
-                <Card key={char.name} char={char}/>
-            )))}
+            <div className="characters">
+                {!loading && (characters.map((char) => (
+                    <Card key={char.name} char={char}/>
+                )))}
+             </div>
 
+        
             {!loading && totalPages > 0 && (
             <form className="pagination" onSubmit={handleSubmit}>
                 <button type="button" disabled={currentPage === 1} onClick={prevPage}>
@@ -82,7 +85,7 @@ const Pagination = () => {
                 </button>
             </form>
             )}
-
+       
            
         </>
     
