@@ -18,7 +18,6 @@ const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const PAGE_SIZE = 10;
-  const skeletons = [...Array(3)];
 
   const fetchCharacters = async (page: number) => {
     setLoading(true);
