@@ -8,7 +8,10 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Personagens Disney</h1>
+      <header>
+        <h1>Personagens Disney </h1>
+        <img src="/mickey.png" alt="" />
+      </header>
 
       <div className="action">
         <button onClick={() => setPagination("pagination")}>Paginação</button>
