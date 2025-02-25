@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import Skeleton from "./Skeleton";
 import "../App.css";
 
 type CHARACTER = {
@@ -17,6 +18,7 @@ const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const PAGE_SIZE = 10;
+  const skeletons = [...Array(3)];
 
   const fetchCharacters = async (page: number) => {
     setLoading(true);
@@ -63,13 +65,14 @@ const Pagination = () => {
 
   return (
     <>
-      {loading && <p className="loader">Buscando... </p>}
-
       {!loading && error && <p className="error">{error}</p>}
 
       <div className="characters">
-        {!loading &&
-          characters.map((char) => <Card key={char.name} char={char} />)}
+        {loading ? (
+          <Skeleton />
+        ) : (
+          characters.map((char) => <Card key={char.name} char={char} />)
+        )}
       </div>
 
       {!loading && totalPages > 0 && (
