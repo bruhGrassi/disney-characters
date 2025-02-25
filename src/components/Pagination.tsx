@@ -77,7 +77,7 @@ const Pagination = () => {
       {!loading && totalPages > 0 && (
         <form className="pagination" onSubmit={handleSubmit}>
           <button type="button" disabled={currentPage === 1} onClick={prevPage}>
-            ⬅️ Anterior
+            Anterior
           </button>
           <input
             type="number"
@@ -90,7 +90,7 @@ const Pagination = () => {
             disabled={currentPage === totalPages}
             onClick={nextPage}
           >
-            Próxima ➡️
+            Próxima
           </button>
         </form>
       )}
